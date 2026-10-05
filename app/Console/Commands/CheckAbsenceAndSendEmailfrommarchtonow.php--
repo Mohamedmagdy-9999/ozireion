@@ -1,0 +1,114 @@
+<?php
+
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+use App\Models\Student;
+use App\Models\StudentAbsent;
+use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
+use App\Models\AbsenceEmailLog;
+
+class CheckAbsenceAndSendEmail extends Command
+{
+    protected $signature = 'absence:check';
+    protected $description = 'Force send absence notification emails from March until today';
+
+    public function handle()
+    {
+        Student::with(['class.grade', 'father', 'mother'])
+            ->chunk(100, function ($students) {
+                foreach ($students as $student) {
+                    $this->processStudent($student);
+                }
+            });
+    }
+
+    private function processStudent($student)
+    {
+        // 📅 من 1 مارس لحد النهاردة
+        $startDate = Carbon::createFromDate(now()->year, 3, 1);
+
+        $absences = StudentAbsent::where('student_id', $student->id)
+            ->where('absent_status_id', 2)
+            ->whereBetween('date', [$startDate, today()])
+            ->orderBy('date')
+            ->pluck('date')
+            ->map(fn ($d) => Carbon::parse($d));
+
+        // ❌ أقل من 3 أيام مفيش إرسال
+        if ($absences->count() < 3) {
+            return;
+        }
+
+        $consecutiveDays = 1;
+
+        for ($i = 1; $i < $absences->count(); $i++) {
+
+            $prev = $absences[$i - 1];
+            $current = $absences[$i];
+
+            // ⏱ حساب التتابع مع تجاهل الجمعة والسبت
+            $daysBetween = 0;
+            $dt = $prev->copy()->addDay();
+
+            while ($dt->lte($current)) {
+                if (!in_array($dt->dayOfWeek, [5, 6])) {
+                    $daysBetween++;
+                }
+                $dt->addDay();
+            }
+
+            if ($daysBetween <= 1) {
+                $consecutiveDays++;
+            } else {
+                $consecutiveDays = 1;
+            }
+
+            // 🔥 FORCE SEND (بدون أي شروط زمنية)
+            if ($consecutiveDays >= 3) {
+                $this->sendEmail($student, $consecutiveDays, $current);
+                break;
+            }
+        }
+    }
+
+    private function sendEmail($student, $days, $lastAbsenceDate)
+    {
+        $emails = [];
+
+        if (!empty($student->father?->email)) {
+            $emails[] = $student->father->email;
+        }
+
+        if (!empty($student->mother?->email)) {
+            $emails[] = $student->mother->email;
+        }
+
+        if (empty($emails)) {
+            return;
+        }
+
+        // 📧 إرسال الإيميل
+        Mail::send('emails.absence_notification', [
+            'student' => $student,
+            'days' => $days,
+        ], function ($message) use ($emails, $student) {
+            $message->to($emails)
+                ->subject("تنبيه بغياب الطالب {$student->name}");
+        });
+
+        // 💾 حفظ اللوج بدون كراش (حل مشكلة unique)
+        AbsenceEmailLog::updateOrCreate(
+            [
+                'student_id' => $student->id
+            ],
+            [
+                'emails' => implode(', ', $emails),
+                'days' => $days,
+                'last_absence_date' => $lastAbsenceDate->format('Y-m-d'),
+                'sent_at' => now(),
+            ]
+        );
+    }
+}

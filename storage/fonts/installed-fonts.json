@@ -1,0 +1,47 @@
+{
+    "dropify": {
+        "normal": "dropify_normal_91438804eee1ee4dcf3a144bb0df33ac"
+    },
+    "lg": {
+        "normal": "lg_normal_20d376d4aa624334069225d971b4ad2e"
+    },
+    "summernote": {
+        "normal": "summernote_normal_b792f65ff8445f00c855c259b098b3ac"
+    },
+    "fontawesome": {
+        "normal": "fontawesome_normal_9ee1b6f8a0fe70dbb4f81b499d28dbb0"
+    },
+    "glyphicons halflings": {
+        "normal": "glyphicons_halflings_normal_bde0cabe3f98af68480574aa318c2f36"
+    },
+    "ionicons": {
+        "normal": "ionicons_normal_f9f431dad8b7c5e05f123d98a2058067"
+    },
+    "linearicons-free": {
+        "normal": "linearicons_free_normal_58397d912ac3dcd2364d50d0903b29db"
+    },
+    "material design icons": {
+        "normal": "material_design_icons_normal_f630b487ad194f21f7e12e2fbdf13ce8"
+    },
+    "material-design-iconic-font": {
+        "normal": "material_design_iconic_font_normal_af77882a89b5fc8e26ad2948a7997f41"
+    },
+    "pe-icon-7-stroke": {
+        "normal": "pe_icon_7_stroke_normal_a9554affb6d3ad32bc800ef5ceb077ef"
+    },
+    "themify": {
+        "normal": "themify_normal_b5fa60ddd1d0afbf2c15d2a224387213"
+    },
+    "typicons": {
+        "normal": "typicons_normal_a1ef4bc64f2156c58cffff6ddaec3f0d"
+    },
+    "weathericons": {
+        "normal": "weathericons_normal_e99ffb05d7e43942c96e50d71384d77b"
+    },
+    "feather": {
+        "normal": "feather_normal_985d30754274174f570caf3e674f33dd"
+    },
+    "remixicon": {
+        "normal": "remixicon_normal_20410100852d885b11995f9e39bcdd2a"
+    }
+}

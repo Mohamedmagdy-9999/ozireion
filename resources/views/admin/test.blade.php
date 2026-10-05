@@ -1,0 +1,4 @@
+<a class="btn btn-primary" href="mailto:'info@leaderscollege.net'?bcc='dr.alaa.ghazi.ceo@leadersintcollege.com';'maha.elmahy1@gmail.com'; 'm.elhawary@leadersintcollege.com'; 'Nermeen.alaa@leadersintcollege.com'; 'amalelmenoufi.leaders2@gmail.com';'raniashawky.leaderscollege@hotmail.com'; 'shereen2bd@gmail.com';
+                                'rihamghaly_leaderscollege@hotmail.com'; 'Noha.Fathy@leaderscollege.net'; 'dina.fekry@leaderscollege.net'; 'schoolcounselor@leaderscollege.net';@if(isset($mother))@foreach($mother as $ma) '{{$ma->email != null}}'; @if($ma->email2 != null) '{{$ma->email2}}';@endif  @if($ma->email3 != null)'{{$ma->email3}}';@endif @endforeach @endif  @if(isset($father))@foreach($father as $fa) '{{$fa->email != null}}'; @if($fa->email2 != null)'{{$fa->email2}}';@endif  @if($fa->email3 != null))'{{$fa->email3}}';@endif @endforeach @endif" class="btn btn-theme fw-bold">
+                                                            send email
+</a>
