@@ -57,7 +57,8 @@
                                                                         <thead>
                                                                             <tr>
                                                                                 <th>#</th>
-                                                                                <th>Name</th>
+                                                                                <th>Name In English</th>
+                                                                                <th>Name In Arabic</th>
                                                                                 <th>Coach</th>
                                                                                 <th>Category</th>
                                                                                 <th>Sub Category</th>
@@ -81,7 +82,11 @@
                                                                                             <td>{{ $key + 1 }}</td>
 
                                                                                             <td>
-                                                                                                {{ $session->name }}
+                                                                                                {{ $session->name_en }}
+                                                                                            </td>
+
+                                                                                            <td>
+                                                                                                {{ $session->name_ar }}
                                                                                             </td>
 
                                                                                             <td>
