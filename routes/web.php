@@ -44,7 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('coach', 'CoachController')->middleware(['permission:coach']);
 
         Route::resource('sessions', 'SessionController')->middleware(['permission:sessions']);
-     
+        Route::resource('product', 'ProductController')->middleware(['permission:products']);
 
   
     

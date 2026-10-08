@@ -330,7 +330,24 @@
 
                                             </ul>
                                         </li>
-                                     @endcan
+                                    @endcan
+
+                                    @can('ecommerce')
+                                        <li class="slide">
+                                            <a class="side-menu__item" data-bs-toggle="slide" href="#">
+                                               <i class="fe fe-shopping-bag"></i>
+                                                <span class="side-menu__label"> &nbsp;E-commerce</span><i class="angle fa fa-angle-right"></i></a>
+                                            <ul class="slide-menu">
+                                                <li class="side-menu-label1"><a href="javascript:void(0)">Tables</a></li>
+                                                    @can('products')
+                                                        <li><a href="{{route('product.index')}}" class="slide-item">Products</a></li>
+                                                    @endcan
+
+                                               
+
+                                            </ul>
+                                        </li>
+                                    @endcan
 
                                     @can('security')
                                         <li class="slide">
