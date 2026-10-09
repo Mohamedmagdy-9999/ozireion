@@ -107,7 +107,9 @@
 
                                                         <div class="form-group">
                                                             <label for="">description in english</label>
-                                                            <input type="text" name="desc_en" class="form-control" value="{{$coach->desc_en}}" required>
+                                                            <textarea name="desc_en" class="form-control ckeditor">
+                                                                {{ $coach->desc_en}}
+                                                            </textarea>
 
                                                             @if($errors->has('desc_en'))
                                                                 <div class="error" style="color:red;">{{ $errors->first('desc_en') }}</div>
@@ -117,7 +119,9 @@
 
                                                         <div class="form-group">
                                                             <label for="">descriptiom in arabic</label>
-                                                            <input type="text" name="desc_ar" class="form-control" value="{{$coach->desc_ar}}" required>
+                                                            <textarea name="desc_ar" class="form-control ckeditor">
+                                                                {{ $coach->desc_ar}}
+                                                            </textarea>
                                                             @if($errors->has('desc_ar'))
                                                                 <div class="error" style="color:red;">{{ $errors->first('desc_ar') }}</div>
                                                             @endif
