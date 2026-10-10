@@ -25,6 +25,7 @@
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-permission": "^6.25",
         "swapinvidya/laravel-huggingface-client": "^1.0",
+        "tymon/jwt-auth": "^1.0",
         "web-auth/webauthn-lib": "^5.2"
     },
     "require-dev": {

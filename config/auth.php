@@ -40,25 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'father' => [
-            'driver' => 'session',
-            'provider' => 'fathers',
-        ],
-        'father-api' => [
-            'driver' => 'token',
-            'provider' => 'fathers',
+        
+        'client-api' => [
+            'driver' => 'jwt',
+            'provider' => 'clients',
             'hash' => false,
         ],
 
-        'mother' => [
-            'driver' => 'session',
-            'provider' => 'mothers',
-        ],
-        'mother-api' => [
-            'driver' => 'token',
-            'provider' => 'mothers',
-            'hash' => false,
-        ],
+        
     ],
 
     /*
@@ -84,20 +73,13 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
-
-        'fathers' => [
+       
+        'clients' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Father::class,
+            'model' => App\Models\Client::class,
         ],
 
-        'mothers' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Mother::class,
-        ],
+       
 
         
     ],

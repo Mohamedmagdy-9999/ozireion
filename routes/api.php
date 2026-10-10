@@ -21,5 +21,24 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('attributes', 'ApiController@attributes');
-Route::post('add_form', 'ApiController@add_form');
+Route::prefix('v-client')->group(function () {
+    
+         Route::post('register', 'MobileApiController@register');
+        Route::post('login', 'MobileApiController@login');
+
+        Route::get('genders','MobileApiController@genders');
+        Route::get('countries','MobileApiController@countries');
+
+        
+        Route::middleware(['auth:api_users', 'user'])->group(function () {
+
+            Route::get('user_profile_completion','MobileApiController@user_profile_completion');
+            Route::get('check','MobileApiController@check');
+            Route::post('complete_profile','MobileApiController@complete_profile');
+            Route::post('delete_user', 'MobileApiController@delete_user');
+
+            
+            
+        });
+
+});
